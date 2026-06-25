@@ -1,0 +1,19 @@
+{
+  "overview": "A 3D cargo delivery simulation game where players pilot aircraft to deliver perishable miraa cargo to Mogadishu before it spoils, featuring landing/takeoff mechanics and a scoring system.",
+  "features": [
+    "3D perspective flight simulation with React Three Fiber",
+    "Perishable cargo spoilage timer mechanic",
+    "Interactive landing and takeoff at Mogadishu airport",
+    "Scoring system based on delivery speed and cargo freshness",
+    "Full-viewport game canvas with HUD controls"
+  ],
+  "category": "game",
+  "tags": [
+    "3d",
+    "simulation",
+    "cargo-delivery",
+    "aviation",
+    "east-africa"
+  ],
+  "last_updated": "2026-06-24T09:57:38.148Z"
+}

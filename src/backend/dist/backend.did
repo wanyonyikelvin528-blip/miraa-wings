@@ -1,0 +1,83 @@
+type UserId = principal;
+type Timestamp = nat;
+type Score = 
+ record {
+   deliveryTime: nat;
+   freshnessPercent: nat;
+   gameId: GameId;
+   player: UserId;
+   timestamp: Timestamp;
+   totalScore: nat;
+ };
+type LeaderboardEntry = 
+ record {
+   bestDeliveryTime: nat;
+   deliveriesCount: nat;
+   player: UserId;
+   rank: nat;
+   totalScore: nat;
+ };
+type GameState = 
+ record {
+   altitude: nat;
+   cargo: Cargo;
+   distanceRemaining: nat;
+   endTime: opt Timestamp;
+   id: GameId;
+   phase: GamePhase;
+   player: UserId;
+   speed: nat;
+   startTime: Timestamp;
+ };
+type GamePhase = 
+ variant {
+   delivered;
+   flying;
+   landing;
+   preparing;
+   takingOff;
+ };
+type GameId = nat;
+type DeliveryRecord = 
+ record {
+   cargoName: text;
+   deliveryTime: nat;
+   freshnessPercent: nat;
+   gameId: GameId;
+   landedAtMogadishu: bool;
+   player: UserId;
+   score: nat;
+   timestamp: Timestamp;
+ };
+type CargoStatus = 
+ variant {
+   fresh;
+   spoiled;
+   spoiling;
+ };
+type Cargo = 
+ record {
+   id: nat;
+   name: text;
+   perishabilityRate: nat;
+   status: CargoStatus;
+   totalWeight: nat;
+ };
+service : {
+  __activeGames: (ko: opt GameId, count: opt nat) ->
+   (vec record {
+          GameId;
+          GameState;
+        }) query;
+  __deliveryRecords: (io: opt nat, count: opt nat) ->
+   (vec DeliveryRecord) query;
+  __nextGameId: () -> (reserved) query;
+  getDeliveryHistory: (player: UserId, limit: nat) ->
+   (vec DeliveryRecord) query;
+  getGameState: (gameId: GameId) -> (opt GameState) query;
+  getLeaderboard: (limit: nat) -> (vec LeaderboardEntry) query;
+  startDelivery: (cargo: Cargo) -> (GameState);
+  submitScore: (gameId: GameId, landedAtMogadishu: bool) -> (opt Score);
+  updateGameState: (gameId: GameId, speed: nat, altitude: nat,
+   distanceRemaining: nat) -> (opt GameState);
+}

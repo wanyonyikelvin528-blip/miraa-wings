@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: Space Grotesk;
+    --font-body: DM Sans;
+    --font-mono: JetBrains Mono;
+    --radius: 0.625rem;
+
+    --background: 0.14 0.015 50;
+    --foreground: 0.92 0.01 60;
+    --card: 0.18 0.018 50;
+    --card-foreground: 0.92 0.01 60;
+    --popover: 0.22 0.02 50;
+    --popover-foreground: 0.92 0.01 60;
+
+    --primary: 0.72 0.17 70;
+    --primary-foreground: 0.14 0.015 70;
+
+    --secondary: 0.22 0.02 50;
+    --secondary-foreground: 0.82 0.01 60;
+    --muted: 0.22 0.02 50;
+    --muted-foreground: 0.52 0.012 55;
+
+    --accent: 0.58 0.14 25;
+    --accent-foreground: 0.95 0.005 25;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.92 0.01 25;
+
+    --border: 0.28 0.02 50;
+    --input: 0.28 0.02 50;
+    --ring: 0.72 0.17 70;
+
+    --chart-1: 0.72 0.17 70;
+    --chart-2: 0.58 0.14 25;
+    --chart-3: 0.6 0.16 150;
+    --chart-4: 0.72 0.15 85;
+    --chart-5: 0.55 0.22 25;
+
+    --sidebar: 0.18 0.018 50;
+    --sidebar-foreground: 0.92 0.01 60;
+    --sidebar-primary: 0.72 0.17 70;
+    --sidebar-primary-foreground: 0.14 0.015 70;
+    --sidebar-accent: 0.22 0.02 50;
+    --sidebar-accent-foreground: 0.82 0.01 60;
+    --sidebar-border: 0.28 0.02 50;
+    --sidebar-ring: 0.72 0.17 70;
+
+    --success: 0.6 0.16 150;
+    --warning: 0.72 0.15 85;
+  }
+
+  .dark {
+    --background: 0.14 0.015 50;
+    --foreground: 0.92 0.01 60;
+    --card: 0.18 0.018 50;
+    --card-foreground: 0.92 0.01 60;
+    --popover: 0.22 0.02 50;
+    --popover-foreground: 0.92 0.01 60;
+
+    --primary: 0.72 0.17 70;
+    --primary-foreground: 0.14 0.015 70;
+
+    --secondary: 0.22 0.02 50;
+    --secondary-foreground: 0.82 0.01 60;
+    --muted: 0.22 0.02 50;
+    --muted-foreground: 0.52 0.012 55;
+
+    --accent: 0.58 0.14 25;
+    --accent-foreground: 0.95 0.005 25;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.92 0.01 25;
+
+    --border: 0.28 0.02 50;
+    --input: 0.28 0.02 50;
+    --ring: 0.72 0.17 70;
+
+    --chart-1: 0.72 0.17 70;
+    --chart-2: 0.58 0.14 25;
+    --chart-3: 0.6 0.16 150;
+    --chart-4: 0.72 0.15 85;
+    --chart-5: 0.55 0.22 25;
+
+    --sidebar: 0.18 0.018 50;
+    --sidebar-foreground: 0.92 0.01 60;
+    --sidebar-primary: 0.72 0.17 70;
+    --sidebar-primary-foreground: 0.14 0.015 70;
+    --sidebar-accent: 0.22 0.02 50;
+    --sidebar-accent-foreground: 0.82 0.01 60;
+    --sidebar-border: 0.28 0.02 50;
+    --sidebar-ring: 0.72 0.17 70;
+
+    --success: 0.6 0.16 150;
+    --warning: 0.72 0.15 85;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@theme {
+  --color-background: oklch(0.14 0.015 50);
+  --color-foreground: oklch(0.92 0.01 60);
+  --color-card: oklch(0.18 0.018 50);
+  --color-card-foreground: oklch(0.92 0.01 60);
+  --color-primary: oklch(0.72 0.17 70);
+  --color-primary-foreground: oklch(0.14 0.015 70);
+  --color-secondary: oklch(0.22 0.02 50);
+  --color-secondary-foreground: oklch(0.82 0.01 60);
+  --color-muted: oklch(0.22 0.02 50);
+  --color-muted-foreground: oklch(0.52 0.012 55);
+  --color-accent: oklch(0.58 0.14 25);
+  --color-accent-foreground: oklch(0.95 0.005 25);
+  --color-destructive: oklch(0.55 0.22 25);
+  --color-destructive-foreground: oklch(0.92 0.01 25);
+  --color-success: oklch(0.6 0.16 150);
+  --color-warning: oklch(0.72 0.15 85);
+  --color-border: oklch(0.28 0.02 50);
+  --color-input: oklch(0.28 0.02 50);
+  --color-ring: oklch(0.72 0.17 70);
+}
+
+.gradient-primary {
+  background: linear-gradient(135deg, oklch(0.72 0.17 70), oklch(0.58 0.14 25));
+}
+
+.gradient-subtle {
+  background: linear-gradient(
+    180deg,
+    oklch(0.18 0.018 50),
+    oklch(0.14 0.015 50)
+  );
+}
+
+.shadow-elevated {
+  box-shadow: 0 20px 60px oklch(0 0 0 / 0.25), 0 0 0 1px oklch(0.28 0.02 50);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px oklch(0.72 0.17 70 / 0.3);
+}

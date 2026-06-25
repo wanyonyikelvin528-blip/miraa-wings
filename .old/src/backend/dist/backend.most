@@ -1,0 +1,122 @@
+// Version: 4.0.0
+type CargoStatus__140448583 = {#fresh; #spoiled; #spoiling};
+type CargoStatus__395150183 = {#fresh; #spoiled; #spoiling};
+type Cargo__671671696 =
+  {
+    id : Nat;
+    name : Text;
+    perishabilityRate : Nat;
+    status : CargoStatus__140448583;
+    totalWeight : Nat
+  };
+type Data__80296667<K, V> =
+  {var count : Nat__1040412405; kvs : [var ?(K, V)]};
+type DeliveryRecordList__1039547270 =
+  List__560604548<DeliveryRecord__156320097>;
+type DeliveryRecord__156320097 =
+  {
+    cargoName : Text;
+    deliveryTime : Nat;
+    freshnessPercent : Nat;
+    gameId : Nat;
+    landedAtMogadishu : Bool;
+    player : Principal;
+    score : Nat;
+    timestamp : Nat
+  };
+type DeliveryRecord__281008471 =
+  {
+    cargoName : Text;
+    deliveryTime : Nat;
+    freshnessPercent : Nat;
+    gameId : GameId__54718739;
+    landedAtMogadishu : Bool;
+    player : UserId__329608250;
+    score : Nat;
+    timestamp : Timestamp__93733298
+  };
+type GameId__54718739 = GameId__669134594;
+type GameId__669134594 = Nat;
+type GamePhase__362729997 =
+  {#delivered; #flying; #landing; #preparing; #takingOff};
+type GamePhase__969870676 =
+  {#delivered; #flying; #landing; #preparing; #takingOff};
+type GameStateMap__6694586 = Map__222667396<Nat, GameState__127819427>;
+type GameState__1042750960 =
+  {
+    altitude : Nat;
+    cargo : Cargo__671671696;
+    distanceRemaining : Nat;
+    endTime : ?Timestamp__93733298;
+    id : GameId__54718739;
+    phase : GamePhase__362729997;
+    player : UserId__329608250;
+    speed : Nat;
+    startTime : Timestamp__93733298
+  };
+type GameState__127819427 =
+  {
+    altitude : Nat;
+    cargo :
+      {
+        id : Nat;
+        name : Text;
+        perishabilityRate : Nat;
+        status : CargoStatus__395150183;
+        totalWeight : Nat
+      };
+    distanceRemaining : Nat;
+    endTime : ?Nat;
+    id : Nat;
+    phase : GamePhase__969870676;
+    player : Principal;
+    speed : Nat;
+    startTime : Nat
+  };
+type Internal__41346355<K, V> =
+  {children : [var ?Node__1000929467<K, V>]; data : Data__80296667<K, V>};
+type Leaf__712614010<K, V> = {data : Data__80296667<K, V>};
+type List__529703492<T> =
+  {
+    var blockIndex : Nat__1040412405;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__1040412405
+  };
+type List__560604548<T> = List__529703492<T>;
+type Map__222667396<K, V> = Map__912772452<K, V>;
+type Map__709709801<K, V> =
+  {var root : Node__1000929467<K, V>; var size : Nat__1040412405};
+type Map__912772452<K, V> = Map__709709801<K, V>;
+type Nat__1040412405 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__877741069 =
+  {
+    var activeGames : GameStateMap__6694586;
+    var deliveryRecords : DeliveryRecordList__1039547270;
+    var nextGameId : {var value : Nat}
+  };
+type Node__1000929467<K, V> =
+  {#internal : Internal__41346355<K, V>; #leaf : Leaf__712614010<K, V>};
+type OldActor__19524301 = {};
+type Timestamp__301639476 = Nat;
+type Timestamp__93733298 = Timestamp__301639476;
+type UserId__158757552 = Principal;
+type UserId__329608250 = UserId__158757552;
+{
+  "20250624_000000_InitGame" :
+    (_old : OldActor__19524301) -> NewActor__877741069
+}
+actor  {
+  stable var activeGames :
+    {
+      var root : Node__1000929467<GameId__54718739, GameState__1042750960>;
+      var size : Nat__1040412405
+    };
+  stable var deliveryRecords :
+    {
+      var blockIndex : Nat__1040412405;
+      var blocks : [var [var ?DeliveryRecord__281008471]];
+      var elementIndex : Nat__1040412405
+    };
+  stable var nextGameId : {var value : Nat}
+};
